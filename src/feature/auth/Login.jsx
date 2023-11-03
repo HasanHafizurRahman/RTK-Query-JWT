@@ -2,8 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { useLoginMutation } from "./authApiSlice";
 import { setCredentials } from "./authSlice";
+import { useLoginMutation } from "./authApiSlice";
 
 const Login = () => {
   const userRef = useRef();
@@ -26,6 +26,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const userData = await login({ user, pwd }).unwrap();
       dispatch(setCredentials({ ...userData, user }));
@@ -46,9 +47,11 @@ const Login = () => {
       errRef.current.focus();
     }
   };
+
   const handleUserInput = (e) => setUser(e.target.value);
 
   const handlePwdInput = (e) => setPwd(e.target.value);
+
   const content = isLoading ? (
     <h1>Loading...</h1>
   ) : (
@@ -90,5 +93,4 @@ const Login = () => {
 
   return content;
 };
-
 export default Login;
