@@ -35,4 +35,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       api.dispatch(logout());
     }
   }
+  return result;
 };
+
+export const apiSlice = createApi({
+  baseQuery: baseQueryWithReauth,
+  endpoints: (builder) => ({}),
+});
